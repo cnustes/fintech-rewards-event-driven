@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: local # Default to local development
+  jpa:
+    hibernate:
+      ddl-auto: update # Default for dev/test, overridden in prod
+    open-in-view: false
+
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    tags:
+      application: ${spring.application.name}
